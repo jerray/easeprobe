@@ -46,14 +46,38 @@ release:
 
 dockers:
   - image_templates:
-    - megaease/easeprobe:latest
-    - megaease/easeprobe:{{ .Tag }}
-
+    - haoel/easeprobe:{{ .Tag }}-amd64
     goos: linux
     goarch: amd64
     ids:
       - build
-
     dockerfile: resources/Dockerfile.goreleaser
     extra_files:
       - resources/scripts/entrypoint.sh
+    use: buildx
+    build_flag_templates:
+      - "--platform=linux/amd64"
+
+  - image_templates:
+    - haoel/easeprobe:{{ .Tag }}-arm64v8
+    goos: linux
+    goarch: arm64
+    ids:
+      - build
+    dockerfile: resources/Dockerfile.goreleaser
+    extra_files:
+      - resources/scripts/entrypoint.sh
+    use: buildx
+    build_flag_templates:
+      - "--platform=linux/arm64/v8"
+
+
+docker_manifests:
+- name_template: haoel/easeprobe:latest
+  image_templates:
+  - haoel/easeprobe:{{ .Tag }}-amd64
+  - haoel/easeprobe:{{ .Tag }}-arm64v8
+- name_template: haoel/easeprobe:{{ .Tag }}
+  image_templates:
+  - haoel/easeprobe:{{ .Tag }}-amd64
+  - haoel/easeprobe:{{ .Tag }}-arm64v8rypoint.sh
