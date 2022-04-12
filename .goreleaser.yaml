@@ -80,4 +80,4 @@ docker_manifests:
 - name_template: haoel/easeprobe:{{ .Tag }}
   image_templates:
   - haoel/easeprobe:{{ .Tag }}-amd64
-  - haoel/easeprobe:{{ .Tag }}-arm64v8rypoint.sh
+  - haoel/easeprobe:{{ .Tag }}-arm64v8
