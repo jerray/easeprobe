@@ -47,6 +47,7 @@ release:
 dockers:
   - image_templates:
     - haoel/easeprobe:{{ .Tag }}-amd64
+    skip_push: true
     goos: linux
     goarch: amd64
     ids:
@@ -57,9 +58,14 @@ dockers:
     use: buildx
     build_flag_templates:
       - "--platform=linux/amd64"
+      - "--build-arg=BUILD_DATE={{.Date}}"
+      - "--build-arg=BUILD_VERSION={{.Version}}"
+      - "--build-arg=VCS_REF={{.FullCommit}}"
+      - "--build-arg=VCS_URL={{.GitURL}}"
 
   - image_templates:
     - haoel/easeprobe:{{ .Tag }}-arm64v8
+    skip_push: true
     goos: linux
     goarch: arm64
     ids:
@@ -70,6 +76,10 @@ dockers:
     use: buildx
     build_flag_templates:
       - "--platform=linux/arm64/v8"
+      - "--build-arg=BUILD_DATE={{.Date}}"
+      - "--build-arg=BUILD_VERSION={{.Version}}"
+      - "--build-arg=VCS_REF={{.FullCommit}}"
+      - "--build-arg=VCS_URL={{.GitURL}}"
 
 
 docker_manifests:
