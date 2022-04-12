@@ -47,7 +47,6 @@ release:
 dockers:
   - image_templates:
     - haoel/easeprobe:{{ .Tag }}-amd64
-    skip_push: true
     goos: linux
     goarch: amd64
     ids:
@@ -65,7 +64,6 @@ dockers:
 
   - image_templates:
     - haoel/easeprobe:{{ .Tag }}-arm64v8
-    skip_push: true
     goos: linux
     goarch: arm64
     ids:
