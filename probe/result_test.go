@@ -93,7 +93,7 @@ func TestResultMarshalJSON(t *testing.T) {
 	}
 
 	if !reflect.DeepEqual(r1, r2) {
-		t.Fatalf("%v != %v", r1, r2)
+		t.Fatalf("%#v != %#v", r1, r2)
 	}
 }
 
@@ -113,7 +113,7 @@ func TestResultMarshalYAML(t *testing.T) {
 	}
 
 	if !reflect.DeepEqual(r1, r2) {
-		t.Fatalf("%v != %v", r1, r2)
+		t.Fatalf("%+v != %+v", r1, r2)
 	}
 }
 
