@@ -23,6 +23,7 @@ import (
 	"testing"
 	"time"
 
+	"github.com/stretchr/testify/require"
 	"gopkg.in/yaml.v3"
 )
 
@@ -93,7 +94,8 @@ func TestResultMarshalJSON(t *testing.T) {
 	}
 
 	if !reflect.DeepEqual(r1, r2) {
-		t.Fatalf("%#v != %#v", r1, r2)
+		require.Equal(t, r1, r2)
+		// t.Fatalf("%#v != %#v", r1, r2)
 	}
 }
 
